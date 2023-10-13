@@ -24,4 +24,5 @@ public class test {
     public void testRoute(){
         List<Route> route = routService.route(4.0, 6.0, Arrays.asList("Japan"), false);
     }
+
 }
