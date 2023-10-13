@@ -1,6 +1,6 @@
 package com.trip.hackathon.api;
 
-import com.trip.hackathon.engine.SaEngine;
+import com.trip.hackathon.engine.RoutingEngine;
 import com.trip.hackathon.engine.pojo.PlannedRoute;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class RoutePlanningController {
 
     @Autowired
-    private SaEngine saEngine;
+    private RoutingEngine saEngine;
 
     @GetMapping("/run/")
     public ResponseEntity<PlannedRoute> run(LocalDateTime sdt, LocalDateTime edt) {

@@ -1,4 +1,4 @@
-package com.trip.hackathon.engine;
+package com.trip.hackathon.engine.algo;
 
 import java.util.Random;
 
