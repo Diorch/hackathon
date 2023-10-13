@@ -1,7 +1,7 @@
 package com.trip.hackathon.api;
 
 import com.trip.hackathon.engine.RoutingEngine;
-import com.trip.hackathon.engine.pojo.PlannedRoute;
+import com.trip.hackathon.engine.model.PlannedRoute;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package com.trip.hackathon.engine.raw;
+package com.trip.hackathon.engine.model;
 
 import lombok.Data;
 
