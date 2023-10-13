@@ -1,4 +1,4 @@
-package com.trip.hackathon.algorithm.sa;
+package com.trip.hackathon.engine;
 
 import org.springframework.stereotype.Component;
 
