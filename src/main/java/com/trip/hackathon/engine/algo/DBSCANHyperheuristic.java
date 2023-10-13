@@ -1,12 +1,12 @@
 package com.trip.hackathon.engine.algo;
 
+import org.uma.jmetal.problem.doubleproblem.impl.AbstractDoubleProblem;
+import org.uma.jmetal.solution.doublesolution.DoubleSolution;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
-import org.uma.jmetal.problem.impl.AbstractDoubleProblem;
-import org.uma.jmetal.solution.DoubleSolution;
-
 
 public class DBSCANHyperheuristic {
 
@@ -36,7 +36,7 @@ public class DBSCANHyperheuristic {
     private static double distance(int i, int j) {
         double dx = data[i][0] - data[j][0];
         double dy = data[i][1] - data[j][1];
-        return Math.sqrt(dx*dx + dy*dy);
+        return Math.sqrt(dx * dx + dy * dy);
     }
 
     // 执行DBSCAN算法
@@ -48,7 +48,8 @@ public class DBSCANHyperheuristic {
                 List<Integer> neighborPts = regionQuery(i, epsilon);
                 if (neighborPts.size() < minPts) {
                     visited[i] = 2;
-                } else {
+                }
+                else {
                     List<Integer> cluster = new ArrayList<>();
                     cluster.add(i);
                     clusters.add(cluster);
@@ -70,7 +71,8 @@ public class DBSCANHyperheuristic {
     }
 
     // 将当前数据点的簇扩展到其邻域
-    private static void expandCluster(int i, List<Integer> neighborPts, List<Integer> cluster, int[] visited, double epsilon, int minPts) {
+    private static void expandCluster(int i, List<Integer> neighborPts, List<Integer> cluster, int[] visited,
+            double epsilon, int minPts) {
         for (int j : neighborPts) {
             if (visited[j] == 0) {
                 visited[j] = 1;
@@ -81,7 +83,7 @@ public class DBSCANHyperheuristic {
             }
             if (visited[j] != 2 && !cluster.contains(j)) {
                 cluster.add(j);
-                clusters.get(clusters.size()-1).add(j);
+                clusters.get(clusters.size() - 1).add(j);
             }
         }
     }
@@ -94,6 +96,7 @@ public class DBSCANHyperheuristic {
             setNumberOfConstraints(0);
             setName("DBSCAN");
         }
+
         @Override
         public void evaluate(DoubleSolution solution) {
             double epsilon = solution.getVariableValue(0) * (epsilonMax - epsilonMin) + epsilonMin;
@@ -101,13 +104,15 @@ public class DBSCANHyperheuristic {
             clusters.clear();
             dbscan(epsilon, minPts);
             double numClusters = (double) clusters.size();
-            double clusterSize = clusters.stream().mapToDouble(cluster -> (double) cluster.size()).average().orElse(0.0);
+            double clusterSize = clusters.stream().mapToDouble(cluster -> (double) cluster.size()).average()
+                    .orElse(0.0);
             solution.setObjective(0, numClusters);
             solution.setObjective(1, -clusterSize);
         }
+
         @Override
         public DoubleSolution createSolution() {
-            return newDefaultSolution();
+            return new DefaultSolution();
         }
     }
 
@@ -128,7 +133,7 @@ public class DBSCANHyperheuristic {
         System.out.println("聚类结果：");
         for (int i = 0; i < clusters.size(); i++) {
             String clusterStr = clusters.get(i).stream().map(j -> "(" + data[j][0] + ", " + data[j][1] + ")").collect(Collectors.joining(", "));
-            System.out.println("簇" + (i+1) + ": " + clusterStr);
+            System.out.println("簇" + (i + 1) + ": " + clusterStr);
         }
     }
 }

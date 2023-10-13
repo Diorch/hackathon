@@ -1,10 +1,12 @@
 package com.trip.hackathon.engine.algo;
 
+import org.uma.jmetal.problem.doubleproblem.impl.AbstractDoubleProblem;
+import org.uma.jmetal.solution.doublesolution.DoubleSolution;
+import org.uma.jmetal.solution.doublesolution.impl.DefaultDoubleSolution;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import org.uma.jmetal.problem.impl.AbstractDoubleProblem;
-import org.uma.jmetal.solution.DoubleSolution;
 
 public class KMeansHeuristic {
     
@@ -116,7 +118,7 @@ public class KMeansHeuristic {
         }
         @Override
         public DoubleSolution createSolution() {
-            return newDefaultSolution();
+            return new DefaultDoubleSolution();
         }
     }
     

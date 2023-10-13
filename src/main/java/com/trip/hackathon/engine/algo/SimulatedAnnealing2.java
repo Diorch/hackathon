@@ -1,7 +1,9 @@
 package com.trip.hackathon.engine.algo;
 
+import org.uma.jmetal.problem.doubleproblem.impl.AbstractDoubleProblem;
+import org.uma.jmetal.solution.doublesolution.DoubleSolution;
+
 import java.util.Random;
-import org.uma.jmetal.problem.impl.AbstractDoubleProblem;
 
 
 public class SimulatedAnnealing2 {
@@ -64,8 +66,7 @@ public class SimulatedAnnealing2 {
                 T *= alpha;
             }
             solution.setObjective(0, -energy); // 目标函数为最大化能量
-        }
-        @Override
+        }        @Override
         public DoubleSolution createSolution() {
             return newDefaultSolution();
         }
